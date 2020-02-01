@@ -10,16 +10,10 @@ public class IntegerTxtToArray {
         try {
             FileInputStream txtFile = new FileInputStream(file);
 
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(txtFile));
-            bufferedReader.close();
-
-            return bufferedReader;
+            return new BufferedReader(new InputStreamReader(txtFile));
 
         } catch (FileNotFoundException e) {
             System.out.println("Файл не найден");
-            return null;
-        } catch (IOException e) {
-            e.printStackTrace();
             return null;
         }
 

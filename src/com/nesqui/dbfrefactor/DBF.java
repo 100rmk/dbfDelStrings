@@ -6,16 +6,19 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DBF {
     private String fileName;
     private DBFField[] fields;
-    private List<Object[]> dbfValues;
+    private List<Object[]> dbfValues = new ArrayList<>();
 
     public DBF(String fileName) {
         this.fileName = fileName;
+    }
 
+    public void read() {
         DBFReader reader = null;
 
         try {
@@ -32,7 +35,6 @@ public class DBF {
             Object[] rowObjects;
 
             while ((rowObjects = reader.nextRecord()) != null) {
-                assert dbfValues != null;
                 dbfValues.add(rowObjects);
             }
         } catch (DBFException | IOException e) {
@@ -44,6 +46,7 @@ public class DBF {
 
     public void dbfWriter(List<Object[]> list) {
         DBFWriter dbfWriter = new DBFWriter(new File(fileName));
+        dbfWriter.setFields(fields);
         for (Object[] objects : list) {
             dbfWriter.addRecord(objects);
         }
