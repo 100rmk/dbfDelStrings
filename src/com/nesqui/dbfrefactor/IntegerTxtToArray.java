@@ -6,14 +6,15 @@ import java.util.List;
 
 public class IntegerTxtToArray {
 
-    IntegerTxtToArray(String fileName) {
-    }
-    public BufferedReader getFile(String file) {
+    public static BufferedReader getFile(String file) {
         try {
             FileInputStream txtFile = new FileInputStream(file);
+
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(txtFile));
             bufferedReader.close();
+
             return bufferedReader;
+
         } catch (FileNotFoundException e) {
             System.out.println("Файл не найден");
             return null;
@@ -23,12 +24,18 @@ public class IntegerTxtToArray {
         }
 
     }
-    public List<Integer> createTxtList(BufferedReader txtFile) throws IOException {
+    public static List<Integer> createTxtList(BufferedReader txtFile) throws IOException {
+
         List<Integer> returnList = new ArrayList<>();
+
         while (txtFile.ready()) {
+
             String string = txtFile.readLine();
+
             if (string.matches((".\\d+ (строка):"))) {
+
                 string = extractInt(string);
+
                 int i = Integer.parseInt(string) + 1; // dbf first string always as title
                 returnList.add(i);
             }
