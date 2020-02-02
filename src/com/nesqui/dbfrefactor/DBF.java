@@ -4,7 +4,6 @@ import com.linuxense.javadbf.*;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,12 +54,8 @@ public class DBF {
     }
 
     public void removeByValues(List<Integer> values) {
-        for (int i = dbfValues.size()-1; i >= 0; i--) {
-            if (values.contains(i)) {
-                dbfValues.remove(i);
-                values.remove(values.indexOf(i));
-                i--;
-            }
+        for (int i = values.size() - 1; i >= 0; i--) {
+            dbfValues.remove(values.get(i).intValue());
         }
     }
 

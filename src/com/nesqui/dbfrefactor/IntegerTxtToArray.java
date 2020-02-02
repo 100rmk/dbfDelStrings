@@ -30,7 +30,7 @@ public class IntegerTxtToArray {
 
                 string = extractInt(string);
 
-                int i = Integer.parseInt(string) + 1; // dbf first string always as title
+                int i = Integer.parseInt(string) - 1; // dbf first string always as title
                 returnList.add(i);
             }
         }
